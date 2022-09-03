@@ -1,0 +1,105 @@
+<div class="container-fluid">
+
+
+
+  <div id="navbarSupportedContent">
+    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addTeam" (click)="adddTeam()">Add Team</button>
+  </div>
+
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Departement</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of teams">
+          <td>{{team.name}}</td>
+          <td>{{team.departement.name}}</td>
+          <td>
+              <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editTeam" (click)="editTeam(team)">Edit</button>
+              <button type="button" class="btn btn-outline-danger" (click)="delete(team)">Delete</button>
+          </td>
+
+        </tr>
+        
+      </tbody>
+    </table>
+
+
+<!-- Add team modal -->
+<div class="modal fade" id="addTeam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new Team</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+          <form [formGroup]="teamDetail">
+             <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name </label>
+                  <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+             </div>
+
+             <div class="mb-3">
+                <label  aria-describedby="emailHelp" class="form-label">Select Departement</label>
+                <select id="exampleFormControlSelect1" formControlName="departement_id" id="departement_id" class="form-select">
+                  <option selected disabled>Select Departement</option>
+                  <option *ngFor="let departement of departements" [ngValue]="departement.id">{{departement.name}}</option>
+                </select>
+             </div>
+
+             <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addTeam()">Add Team</button>
+             </div>
+          </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<!-- Edit Team modal -->
+<div class="modal fade" id="editTeam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Team details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+          <form [formGroup]="teamDetail">
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name </label>
+                  <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+                </div>
+
+                <div class="mb-3">
+                  <label  aria-describedby="emailHelp" class="form-label">Select Departement</label>
+                  <select id="exampleFormControlSelect1" formControlName="departement_id" id="departement_id" class="form-select">
+                    <option selected disabled>Select Departement</option>
+                    <option *ngFor="let departement of departements" [ngValue]="departement.id">{{departement.name}}</option>
+                  </select>
+               </div>
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-outline-success" (click)="updateTeam()" data-bs-dismiss="modal">Update </button>
+                </div>
+            </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div> 
+

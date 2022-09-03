@@ -1,0 +1,105 @@
+<div class="container-fluid">
+
+
+
+  <div id="navbarSupportedContent">
+    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addCompany" (click)="adddCompany()">Add Company</button>
+  </div>
+
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companies">
+          <td>{{company.name}}</td>
+          <td>{{company.email}}</td>
+          <td>{{company.address}}</td>
+          <td>
+              <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editCompany" (click)="editCompany(company)">Edit</button>
+              <button type="button" class="btn btn-outline-danger" (click)="delete(company)">Delete</button>
+          </td>
+
+        </tr>
+        
+      </tbody>
+    </table>
+
+
+<!-- Add company modal -->
+<div class="modal fade" id="addCompany" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new Company</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+          <form [formGroup]="companyDetail">
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name </label>
+                  <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+                </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email </label>
+                <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Addresse </label>
+                  <input type="text" formControlName="address" class="form-control" id="address" aria-describedby="emailHelp">
+                </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addCompany()">Add company</button>
+                </div>
+            </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<!-- Edit company modal -->
+<div class="modal fade" id="editCompany" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit company details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+          <form [formGroup]="companyDetail">
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name </label>
+                  <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+                </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email </label>
+                <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Addresse </label>
+                  <input type="text" formControlName="address" class="form-control" id="adraddressesse" aria-describedby="emailHelp">
+                </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-outline-success" (click)="updateCompany()" data-bs-dismiss="modal">Update </button>
+                </div>
+            </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div> 
+

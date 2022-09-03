@@ -1,0 +1,105 @@
+<div class="container-fluid">
+
+
+
+  <div id="navbarSupportedContent">
+    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addDepartement" (click)="adddDepartement()">Add Departement</button>
+  </div>
+
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Entity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let departement of departements">
+          <td>{{departement.name}}</td>
+          <td>{{departement.companyEntity.name}}</td>
+          <td>
+              <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editDepartement" (click)="editDepartement(departement)">Edit</button>
+              <button type="button" class="btn btn-outline-danger" (click)="delete(departement)">Delete</button>
+          </td>
+
+        </tr>
+        
+      </tbody>
+    </table>
+
+
+<!-- Add departement modal -->
+<div class="modal fade" id="addDepartement" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new Departement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+          <form [formGroup]="departementDetail">
+             <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name </label>
+                  <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+             </div>
+
+             <div class="mb-3">
+                <label  aria-describedby="emailHelp" class="form-label">Select CompanyEntity</label>
+                <select id="exampleFormControlSelect1" formControlName="companyEntity_id" id="companyEntity_id" class="form-select">
+                  <option selected disabled>Select CompanyEntity</option>
+                  <option *ngFor="let companyEntity of companyEntities" [ngValue]="companyEntity.id">{{companyEntity.name}}</option>
+                </select>
+             </div>
+
+             <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addDepartement()">Add Departement</button>
+             </div>
+          </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<!-- Edit Departement modal -->
+<div class="modal fade" id="editDepartement" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit departement details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+          <form [formGroup]="departementDetail">
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name </label>
+                  <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+                </div>
+
+                <div class="mb-3">
+                  <label  aria-describedby="emailHelp" class="form-label">Select CompanyEntity</label>
+                  <select id="exampleFormControlSelect1" formControlName="companyEntity_id" id="companyEntity_id" class="form-select">
+                    <option selected disabled>Select CompanyEntity</option>
+                    <option *ngFor="let companyEntity of companyEntities" [ngValue]="companyEntity.id">{{companyEntity.name}}</option>
+                  </select>
+               </div>
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-outline-success" (click)="updateDepartement()" data-bs-dismiss="modal">Update </button>
+                </div>
+            </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div> 
+
